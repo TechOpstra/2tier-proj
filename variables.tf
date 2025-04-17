@@ -37,7 +37,7 @@ variable "db_username" {
 variable "db_password" {
   description = "The password for the database"
   type        = string
-  default     = "mypassword"
+  default     = "mypassword1"
 }
 
 variable "tags" {
