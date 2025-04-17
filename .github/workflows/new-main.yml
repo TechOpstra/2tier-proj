@@ -51,12 +51,21 @@ jobs:
       - name: Terraform Plan
         run: terraform plan
 
+      - name: Terraform fmt
+        run: terraform fmt      
+
     
       - name: Lint Terraform Code
         run: |
           curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
           tflint --init
           tflint --config .tflint.hcl
+
+      - name: Install Checkov
+        run: pip install checkov
+ 
+      - name: Run Checkov
+        run: checkov -d .
 
    
       - name: Generate Markdown with Terraform Docs
