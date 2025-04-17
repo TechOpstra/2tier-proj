@@ -5,6 +5,7 @@ resource "aws_lb" "web_lb" {
   security_groups    = [var.security_group_id]
   subnets            = var.subnet_ids
   drop_invalid_header_fields = true
+  enable_deletion_protection  = true
 
   tags = var.tags
 }
