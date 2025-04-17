@@ -36,7 +36,7 @@ No requirements.
 | <a name="input_db_name"></a> [db\_name](#input\_db\_name) | The name of the database | `string` | `"mydatabase"` | no |
 | <a name="input_db_password"></a> [db\_password](#input\_db\_password) | The password for the database | `string` | `"mypassword"` | no |
 | <a name="input_db_username"></a> [db\_username](#input\_db\_username) | The username for the database | `string` | `"admin"` | no |
-| <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | Instance type for the EC2 instances | `string` | `"t2.micro"` | no |
+| <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | Instance type for the EC2 instances | `string` | `"t2.medium"` | no |
 | <a name="input_region"></a> [region](#input\_region) | The AWS region to deploy resources in | `string` | `"us-east-1"` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Tags to apply to resources | `map(string)` | <pre>{<br/>  "Name": "TerraformProject"<br/>}</pre> | no |
 
