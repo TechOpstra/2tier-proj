@@ -25,7 +25,7 @@ variable "instance_type" {
 variable "db_name" {
   description = "The name of the database"
   type        = string
-  default     = "mydatabase"
+  default     = "mydatabase1"
 }
 
 variable "db_username" {
