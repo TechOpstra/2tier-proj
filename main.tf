@@ -42,10 +42,10 @@ module "ec2" {
   security_group_id = module.security_groups.web_sg_id
   user_data         = <<-EOF
                       #!/bin/bash
-                      apt update -y
-                      apt install nginx -y
-                      systemctl start nginx
-                      systemctl enable nginx
+                      sudo apt update -y
+                      sudo apt install nginx -y
+                      sudo systemctl start nginx
+                      sudo systemctl enable nginx
                       EOF
   tags              = var.tags
 }
