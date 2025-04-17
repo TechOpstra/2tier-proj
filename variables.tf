@@ -13,7 +13,7 @@ variable "cidr_block" {
 variable "ami" {
   description = "AMI ID for the EC2 instances"
   type        = string
-  default     = "ami-00a929b66ed6e0de6"
+  default     = "ami-084568db4383264d4"
 }
 
 variable "instance_type" {
