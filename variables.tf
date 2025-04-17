@@ -19,7 +19,7 @@ variable "ami" {
 variable "instance_type" {
   description = "Instance type for the EC2 instances"
   type        = string
-  default     = "t2.micro"
+  default     = "t2.medium"
 }
 
 variable "db_name" {
