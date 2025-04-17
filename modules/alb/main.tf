@@ -37,8 +37,6 @@ resource "aws_lb_listener" "web_listener" {
     type             = "forward"
     target_group_arn = aws_lb_target_group.web_tg.arn
   }
-
-  enable_deletion_protection = true
 }
 
 resource "aws_lb_target_group_attachment" "web_tg_attachment" {
