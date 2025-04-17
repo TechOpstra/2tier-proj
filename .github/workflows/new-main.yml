@@ -1,6 +1,6 @@
 name: terraform deployment.
 
-on:
+:
   workflow_dispatch:
     inputs:
       branch:
