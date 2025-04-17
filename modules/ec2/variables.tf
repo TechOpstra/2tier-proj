@@ -13,3 +13,23 @@ variable "instance_type" {
   description = "Instance type"
   type        = string
 }
+
+variable "subnet_ids" {
+  description = "List of subnet IDs"
+  type        = list(string)
+}
+
+variable "security_group_id" {
+  description = "Security group ID"
+  type        = string
+}
+
+variable "user_data" {
+  description = "User data script"
+  type        = string
+}
+
+variable "tags" {
+  description = "Tags to apply to resources"
+  type        = map(string)
+}
