@@ -1,6 +1,6 @@
-name: terraform deployment.
+name: terraform deployment
 
-:
+on:
   workflow_dispatch:
     inputs:
       branch:
@@ -31,27 +31,33 @@ jobs:
           ref: ${{ github.event.pull_request.head.ref || github.ref }}
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      # Step 6: Configure AWS Credentials
+     
       - name: Set up AWS credentials with OIDC
         uses: aws-actions/configure-aws-credentials@v3
         with:
           role-to-assume: arn:aws:iam::877786395093:role/GitHubActionsRole
           aws-region: us-east-1
 
-      # Step 7: Setup Terraform
+ 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
         with:
           terraform_version: 1.11.0
 
-      # Step 8: Terraform Init & Plan
+
       - name: Terraform Init
         run: terraform init -reconfigure
 
       - name: Terraform Plan
         run: terraform plan
 
-      # Step 9: Generate Terraform Docs Markdown
+    
+      - name: Lint Terraform Code
+        run: |
+          curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
+          tflint --config tflint.hcl
+
+   
       - name: Generate Markdown with Terraform Docs
         if: github.event_name == 'push' || github.event_name == 'pull_request'
         uses: terraform-docs/gh-actions@v1.3.0
@@ -63,12 +69,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # Step 10: Configure Git to Commit Generated Docs
+    
       - name: Configure Git
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-      # Step 11: Add README.md as PR Comment (Using Sticky Comment)
+
       - name: Posting README.md as PR Comment
         if: github.event_name == 'pull_request'
         uses: marocchino/sticky-pull-request-comment@v2.9.0
@@ -77,9 +83,8 @@ jobs:
           header: "Terraform Documentation "
           path: "README.md"
 
-      # Step 12: Apply Terraform Changes on PR Merge
       - name: Applying Terraform after PR Merge
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
           terraform init
-          terraform apply -auto-approve 
+          terraform apply -auto-approve
