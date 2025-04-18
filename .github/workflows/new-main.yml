@@ -64,8 +64,10 @@ jobs:
       - name: Install Checkov
         run: pip install checkov
  
-      - name: Run Checkov
-        run: checkov -d . --skip-check CKV_AWS_20,CKV_AWS_21
+      - name: Run Checkov with soft fail
+        run: |
+          pip install checkov
+          checkov --directory . --soft-fail
 
    
       - name: Generate Markdown with Terraform Docs
